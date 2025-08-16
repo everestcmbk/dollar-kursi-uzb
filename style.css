@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.price-box {
+  font-size: 36px;
+  font-weight: bold;
+  background: #00c853;
+  padding: 15px 30px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.update-time {
+  margin-top: 15px;
+  font-size: 14px;
+  opacity: 0.8;
+}
