@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valyuta kurslari (NBU – live)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      text-align: center;
+      padding: 30px;
+    }
+    .card {
+      display: inline-block;
+      background: #fff;
+      padding: 20px 30px;
+      margin: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 200px;
+    }
+    .flag { font-size: 30px; }
+    .rate { font-size: 24px; font-weight: bold; margin-top: 10px;}
+  </style>
+</head>
+<body>
+  <h1>⌛ Valyuta kurslari (NBU)</h1>
+  <div id="rates-container">
+    <!-- Kurs kartochkalari shu yerga joylanadi -->
+  </div>
+
+  <script>
+    async function fetchRates() {
+      const res = await fetch("https://cbu.uz/oz/arkhiv-kursov-valyut/json/");
+      const data = await res.json();
+
+      const vals = {
+        USD: {name: "AQSH dollari", flag: "🇺🇸"},
+        RUB: {name: "Rossiya rubli", flag: "🇷🇺"}
+      };
+
+      let html = "";
+      data.forEach(v => {
+        if (vals[v.Ccy]) {
+          html += `
+            <div class="card">
+              <div class="flag">${vals[v.Ccy].flag}</div>
+              <div>${vals[v.Ccy].name}</div>
+              <div class="rate">${v.Rate} so'm</div>
+            </div>`;
+        }
+      });
+
+      document.getElementById("rates-container").innerHTML = html;
+    }
+
+    fetchRates();
+    setInterval(fetchRates, 60000); // har 1 daqiqa yangilanadi
+  </script>
+</body>
+</html>
